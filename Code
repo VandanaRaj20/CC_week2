@@ -1,0 +1,35 @@
+//For this assignment, I chose a square that 'fears' the cursor. Every time the cursor interacts with the square, it'll go to a random spot away from the cursor. As it moves,it will shrink in size
+
+let X, Y;
+let side = 70;
+let scale = 0.5;
+
+function setup() {
+  createCanvas(400, 400);
+  newPosition();
+}
+
+function draw() {
+  background('#9ffccc');
+  
+  if (mouseX > X && mouseX < X + side && mouseY > Y && mouseY < Y + side) 
+  {
+     side = side * scale;
+     newPosition();
+   
+    //since it will be too hard to find the square, I reseted the square size back to the original size when it shrinks too much
+    if(side<5){
+      side = 70;
+    }
+  
+  }
+  noStroke();
+  fill('#ff007b');
+  rect(X, Y, side, side);
+  
+}
+
+function newPosition() {
+  X = random(width - side);
+  Y = random(height - side);
+}
